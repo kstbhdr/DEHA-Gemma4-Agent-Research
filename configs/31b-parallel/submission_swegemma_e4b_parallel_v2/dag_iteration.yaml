@@ -1,0 +1,6 @@
+agent_class: SequentialAgent
+name: deha_dag_iteration
+description: 'One iteration: Fixer A || Fixer B in parallel, then the QA judge tournament (tests, CONSENSUS, submit).'
+sub_agents:
+- config_path: parallel_fixers.yaml
+- config_path: sub_agents/qa_judge.yaml

@@ -1,0 +1,6 @@
+agent_class: ParallelAgent
+name: deha_parallel_fixers
+description: Fixer A patches /workspace, Fixer B patches its isolated clone /tmp/wt_b -> /tmp/patch_b.diff.
+sub_agents:
+- config_path: sub_agents/fixer_a.yaml
+- config_path: sub_agents/fixer_b.yaml

@@ -1,0 +1,85 @@
+$ unshare -m --propagation private /bin/bash -c mount --bind /tmp/work_fastapi_14356/workspace /workspace && mount --bind /tmp/work_fastapi_14356/tmp /tmp && cd /content/bench_tools && exec env DEHA_OUT=/content/run_21_bench20_v5_8_local/fastapi_14356 PYTHONUNBUFFERED=1 python3 -u task_runner.py fastapi_14356 /content/submission_swegemma_v5_8_compile_gate
+[preflight] {"ok": true, "stage": "base_tests", "reason": null, "base_exit": 1, "base_tail": ["8 failed, 33 passed, 6 errors in 0.86s"], "collected": 41, "declared": ["tests.test_query_cookie_header_model_extra_params::test_header_pass_extra_list", "tests.test_query_cookie_header_model_extra_params::test_query_pass_extra_list", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_an]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_an_py310]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_an_py39]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_py310]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_py39]"], "failed_at_base": ["tests.test_query_cookie_header_model_extra_params::test_header_pass_extra_list", "tests.test_query_cookie_header_model_extra_params::test_query_pass_extra_list", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_an]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_an_py310]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_an_py39]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_py310]", "tests.test_tutorial.test_header_param_models.test_tutorial003::test_header_param_model_no_underscore[tutorial003_py39]"], "missing": null, "error": null, "cmd": "python3 -s -m pytest --junitxml=/tmp/_swegemma_junit_fastapi_14356_base.xml tests/test_query_cookie_header_model_extra_params.py tests/test_tutorial/test_header_param_models/test_tutorial003.py -p no:anyio -o timeout=0 -o python_classes='Test* *Test' -q", "preflight_s": 5.1}
+[validate] {"root": "agent.yaml", "files": 11, "models": ["gemma-4-e4b-it-qat-w4a16-ct"], "tools": {"deha_planner_and_conflict_guard": ["search_similar_code", "get_code_neighbors", "get_code_subgraph", "read_file", "edit_file", "run_command", "get_status", "submit_patch"], "deha_isolated_coder_a": ["read_file", "edit_file", "run_command", "get_status", "search_similar_code"], "deha_isolated_coder_b_and_merger": ["read_file", "edit_file", "run_command", "get_status", "search_similar_code"], "deha_qa_smoke_and_feedback": ["read_file", "run_command", "get_status", "submit_patch"]}, "include_semantics_identical": true, "adapters": []}
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm.turn_on_debug()'.
+
+[dag] fastapi_14356: submitted=True resolved=False turns=45 tool_calls=36 edit_errors=2 nudges=1 wall=523.8s verdict="exit=1 required 0/8 passed; ['34 failed, 7 passed, 12 errors in 1.02s']" err=ContextWindowExceededError: litellm.ContextWindowExceededError: litellm.BadRequestError: ContextWindowExceededError: OpenAIException - This model's maximum context length is 32768 tokens. However, your prompt contains at least 32769 input tokens, which exceeds this limit even without any output tokens. Please reduce the length
+      flow=deha_planner_and_conflict_guard -> HARNESS -> deha_planner_and_conflict_guard -> deha_isolated_coder_a -> deha_isolated_coder_b_and_merger -> deha_qa_smoke_and_feedback -> deha_planner_and_conflict_guard
+
+--- stderr ---
+ONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x79a53db3c040> at 0x79a5346162c0> was created in a different Context
+Failed to detach context
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 602, in use_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 504, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 441, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/telemetry/_instrumentation.py", line 329, in record_agent_invocation
+    yield tel_ctx
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/agents/base_agent.py", line 308, in run_async
+    yield event
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/__init__.py", line 127, in detach
+    _RUNTIME_CONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x79a53db3c040> at 0x79a53406b3c0> was created in a different Context
+Failed to detach context
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/telemetry/_instrumentation.py", line 329, in record_agent_invocation
+    yield tel_ctx
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/agents/base_agent.py", line 308, in run_async
+    yield event
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/__init__.py", line 127, in detach
+    _RUNTIME_CONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x79a53db3c040> at 0x79a53406b180> was created in a different Context
+Failed to detach context
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 602, in use_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 504, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 441, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/telemetry/_instrumentation.py", line 78, in record_invocation
+    yield
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/runners.py", line 1354, in _run_with_trace
+    yield event
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/__init__.py", line 127, in detach
+    _RUNTIME_CONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x79a53db3c040> at 0x79a53d3bbe80> was created in a different Context
+
+--- rc=0 wall=535.9s timed_out=False ---

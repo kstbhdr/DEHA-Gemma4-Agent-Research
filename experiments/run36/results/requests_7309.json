@@ -1,0 +1,10 @@
+{
+  "task": "requests_7309",
+  "resolved": true,
+  "submitted": true,
+  "turns": 24,
+  "tool_calls": 19,
+  "wall_s": 263.6,
+  "iterations": 0,
+  "winner_branch": "fixer_a"
+}

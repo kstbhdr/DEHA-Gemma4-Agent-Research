@@ -1,0 +1,29 @@
+examples 528 max_len 28624
+PREFLIGHT OK -> /content/work_v6_g4/PREFLIGHT_V6.txt
+[transformers] `run_compressed` is deprecated and will be removed in a future version. Use `dequantize=True` instead of `run_compressed=False`.
+/usr/local/lib/python3.13/dist-packages/transformers/quantizers/auto.py:279: UserWarning: You passed `quantization_config` or equivalent parameters to `from_pretrained` but the model you're loading already has a `quantization_config` attribute. The `quantization_config` from the model will be used.However, loading attributes (e.g. ['dequantize', 'use_optimized_inference']) will be overwritten with the one you passed to `from_pretrained`. The rest will be ignored.
+  warnings.warn(warning_msg)
+Compressing model:   0%|          | 0/343 [00:00<?, ?it/s]Compressing model:  31%|███       | 107/343 [00:00<00:00, 1069.89it/s]Compressing model:  63%|██████▎   | 215/343 [00:00<00:00, 1073.55it/s]Compressing model:  94%|█████████▍| 323/343 [00:00<00:00, 1075.10it/s]Compressing model: 100%|██████████| 343/343 [00:00<00:00, 1073.69it/s]
+Loading weights:   0%|          | 0/2763 [00:00<?, ?it/s]Loading weights:  27%|██▋       | 755/2763 [00:00<00:01, 1338.88it/s]Loading weights:  53%|█████▎    | 1465/2763 [00:00<00:00, 2500.96it/s]Loading weights:  75%|███████▌  | 2081/2763 [00:00<00:00, 3314.32it/s]Loading weights: 100%|██████████| 2763/2763 [00:00<00:00, 3370.07it/s]
+Decompressing model:   0%|          | 0/343 [00:00<?, ?it/s]Decompressing model:  31%|███       | 106/343 [00:00<00:00, 1059.31it/s]Decompressing model:  71%|███████   | 244/343 [00:00<00:00, 1246.52it/s]Decompressing model: 100%|██████████| 343/343 [00:00<00:00, 1204.19it/s]
+trainable params: 34,881,536 || all params: 8,100,132,814 || trainable%: 0.4306
+MEMTEST len=28624 loss=1.0090 peak=37.3GB time=29.7s
+total_micro=1056 total_steps=132 warmup=10
+step 10/132 lr=3.00e-05 avg_loss_last=1.3151 peak=37.3GB
+step 20/132 lr=2.96e-05 avg_loss_last=0.9482 peak=37.3GB
+step 30/132 lr=2.82e-05 avg_loss_last=1.0694 peak=37.8GB
+step 40/132 lr=2.60e-05 avg_loss_last=0.9843 peak=37.9GB
+step 50/132 lr=2.31e-05 avg_loss_last=0.8440 peak=37.9GB
+step 60/132 lr=1.96e-05 avg_loss_last=0.7472 peak=37.9GB
+EPOCH 1 mean_loss=0.9704
+step 70/132 lr=1.58e-05 avg_loss_last=0.7791 peak=37.9GB
+step 80/132 lr=1.19e-05 avg_loss_last=0.8488 peak=37.9GB
+step 90/132 lr=8.29e-06 avg_loss_last=0.8107 peak=37.9GB
+step 100/132 lr=5.10e-06 avg_loss_last=0.8164 peak=37.9GB
+step 110/132 lr=2.55e-06 avg_loss_last=0.7472 peak=37.9GB
+step 120/132 lr=8.33e-07 avg_loss_last=0.6081 peak=37.9GB
+step 130/132 lr=4.47e-08 avg_loss_last=0.8316 peak=37.9GB
+step 132/132 lr=4.97e-09 avg_loss_last=0.7941 peak=37.9GB
+EPOCH 2 mean_loss=0.7317
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+SAVED ['adapter_config.json', 'adapter_model.safetensors'] epoch_losses [0.9704386251555248, 0.731743071708038]

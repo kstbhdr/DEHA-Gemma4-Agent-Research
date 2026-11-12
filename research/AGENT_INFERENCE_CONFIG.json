@@ -1,0 +1,167 @@
+{
+  "schema_version": "2026-11-11.v2",
+  "project": "DEHA-Gemma4-Agent-Competition",
+  "updated_at_utc": "2026-11-11T18:05:00Z",
+  "source_run": "logs/run_36_31b_parallel_30m",
+  "backup_code_dir": "logs/run_36_31b_parallel_30m/code/",
+  "submission_package_name": "submission_swegemma_31b_parallel_v2",
+  "submission_sha1": "cc25494995feedcd4fb43fa892f4037eac143e5f",
+  "kaggle_4xL4_production_inference": {
+    "hardware": "4x NVIDIA L4 (96 GB total VRAM, Ada sm_89)",
+    "backend": "vLLM (official Kaggle evaluation harness)",
+    "official_model_id": "google/gemma-4-31b-it-qat-w4a16-ct",
+    "registry_alias": "gemma-4-31b-it-qat-w4a16-ct",
+    "lora_adapter": null,
+    "max_model_len": 32768,
+    "eval_config_yaml": {
+      "evaluation": {
+        "timeout_seconds": 300,
+        "max_tool_calls": 110,
+        "max_time_minutes": 30,
+        "max_turns": 200
+      }
+    },
+    "architecture": {
+      "root_agent": "LoopAgent(max_iterations=3)",
+      "step_agent": "SequentialAgent[ParallelAgent(deha_fixer_a, deha_fixer_b), deha_qa_judge]",
+      "submission_files": [
+        "agent.yaml",
+        "dag_iteration.yaml",
+        "eval_config.yaml",
+        "parallel_fixers.yaml",
+        "sub_agents/fixer_a.yaml",
+        "sub_agents/fixer_b.yaml",
+        "sub_agents/qa_judge.yaml"
+      ]
+    },
+    "sub_agents": {
+      "deha_fixer_a": {
+        "role": "Primary surgical minimal patcher working directly in /workspace (Automatic Unsubmitted Patch Recovery safe)",
+        "temperature": 0.15,
+        "max_output_tokens": 16384,
+        "thinking_config": {
+          "include_thoughts": true,
+          "thinking_budget": 6144
+        },
+        "tools": [
+          "search_similar_code",
+          "get_code_neighbors",
+          "read_file",
+          "edit_file",
+          "run_command",
+          "get_status"
+        ],
+        "restart_guard_flag": "/tmp/deha_a_started"
+      },
+      "deha_fixer_b": {
+        "role": "Parallel edge-case / alternative solver isolated in /tmp/wt_b (git clone --shared /workspace /tmp/wt_b) writing /tmp/patch_b.diff via /tmp/deha_bedit.py",
+        "temperature": 0.45,
+        "max_output_tokens": 16384,
+        "thinking_config": {
+          "include_thoughts": true,
+          "thinking_budget": 6144
+        },
+        "tools": [
+          "search_similar_code",
+          "get_code_neighbors",
+          "run_command",
+          "get_status"
+        ],
+        "forbidden_tools_reason": "read_file and edit_file strip leading / and resolve inside /workspace (HARNESS_README 6.2); excluded to guarantee zero race condition with fixer_a",
+        "restart_guard_flag": "/tmp/deha_b_started"
+      },
+      "deha_qa_judge": {
+        "role": "Tournament selector (/workspace diff vs /tmp/patch_b.diff) with CONSENSUS broken-legacy-test rule and immediate submit_patch",
+        "temperature": 0.1,
+        "max_output_tokens": 16384,
+        "thinking_config": {
+          "include_thoughts": true,
+          "thinking_budget": 3072
+        },
+        "tools": [
+          "read_file",
+          "run_command",
+          "get_status",
+          "submit_patch"
+        ],
+        "heredoc_rule": "Use unquoted <<PEOF (never <<'PEOF') to avoid trailing quote typo on closing delimiter",
+        "consensus_rule": "If both fixer_a and fixer_b pass syntax/gate checks and fail the exact same pre-existing test(s), treat those tests as pinning buggy legacy behavior and immediately submit fixer_a"
+      }
+    },
+    "context_management": {
+      "events_compaction_config": {
+        "compaction_interval": 15,
+        "overlap_size": 2,
+        "token_threshold": 14336,
+        "event_retention_size": 5
+      },
+      "before_model_callback_pruning_threshold_tokens": 14336,
+      "dynamic_output_cap_formula": "min(yaml_max_output_tokens, 32768 - estimated_input_tokens - 512)"
+    }
+  },
+  "local_single_L4_24GB_benchmark_inference": {
+    "hardware": "1x NVIDIA L4 (24 GB VRAM, sm_89)",
+    "engine": "llama.cpp llama-server (commit f3b407c, compiled with -DGGML_CUDA=ON)",
+    "main_model_gguf": {
+      "repo": "unsloth/gemma-4-31B-it-GGUF",
+      "file": "gemma-4-31B-it-Q3_K_M.gguf",
+      "size_gb": 14.7
+    },
+    "speculative_drafter_gguf": {
+      "repo": "bartowski/google_gemma-4-31b-it-GGUF (MTP)",
+      "file": "mtp-google_gemma-4-31B-it-Q4_0.gguf",
+      "spec_type": "draft-mtp",
+      "spec_draft_n_max": 8
+    },
+    "llama_server_flags": [
+      "-m", "gemma-4-31B-it-Q3_K_M.gguf",
+      "-md", "mtp-google_gemma-4-31B-it-Q4_0.gguf",
+      "--spec-type", "draft-mtp",
+      "--spec-draft-n-max", "8",
+      "-ngl", "99",
+      "-fa", "on",
+      "-ctk", "q4_0",
+      "-ctv", "q4_0",
+      "-np", "2",
+      "-c", "65536",
+      "--jinja",
+      "--reasoning-format", "deepseek",
+      "--alias", "google/gemma-4-31b-it-qat-w4a16-ct",
+      "--port", "8000"
+    ],
+    "client_env_and_mapping": {
+      "DEHA_BACKEND": "llamacpp",
+      "task_concurrency": 1,
+      "agent_parallel_slots": 2,
+      "per_slot_context": 32768,
+      "request_extra_body": {
+        "enable_thinking": true,
+        "thinking_budget_tokens": "<agent_thinking_budget>"
+      }
+    },
+    "measured_performance": {
+      "parallel_2slot_throughput_tok_s": 77.0,
+      "single_slot_throughput_tok_s": 56.0,
+      "mtp_acceptance_rate": 0.45,
+      "mtp_avg_accepted_tokens": 4.6,
+      "prefill_12k_tok_s": 578.0,
+      "peak_vram_gb": 18.0
+    }
+  },
+  "small_model_bonus_track_reference": {
+    "official_model_id": "google/gemma-4-E4B-it-qat-w4a16-ct",
+    "lora_adapter": null,
+    "vllm_flags": [
+      "--tool-call-parser", "gemma4",
+      "--reasoning-parser", "gemma4",
+      "--enable-auto-tool-choice",
+      "--enable-prefix-caching",
+      "--enable-chunked-prefill",
+      "--gpu-memory-utilization", "0.88",
+      "--max-model-len", "32768"
+    ],
+    "best_single_run_score": "6/20 (v5.8 / run_30 6/15)",
+    "union_score": "10/20",
+    "best_localization": "17/20 (submission_swegemma_v6g.zip)"
+  }
+}

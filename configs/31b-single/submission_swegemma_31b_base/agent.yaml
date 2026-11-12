@@ -1,0 +1,6 @@
+agent_class: LoopAgent
+name: deha_dag_loop
+description: Feedback loop around one fixer -> QA judge iteration.
+max_iterations: 3
+sub_agents:
+- config_path: dag_iteration.yaml

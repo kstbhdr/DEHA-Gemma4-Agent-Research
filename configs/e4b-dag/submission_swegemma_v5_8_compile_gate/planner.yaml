@@ -1,0 +1,21 @@
+agent_class: LlmAgent
+name: deha_planner_and_conflict_guard
+model: gemma-4-e4b-it-qat-w4a16-ct
+include_contents: none
+instruction: !include prompts/planner.md
+generate_content_config:
+  temperature: 0.1
+  top_p: 0.95
+  max_output_tokens: 16384
+  thinking_config:
+    include_thoughts: true
+    thinking_budget: 4096
+tools:
+  - search_similar_code
+  - get_code_neighbors
+  - get_code_subgraph
+  - read_file
+  - edit_file
+  - run_command
+  - get_status
+  - submit_patch

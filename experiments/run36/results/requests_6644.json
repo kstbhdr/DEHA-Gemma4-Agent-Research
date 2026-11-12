@@ -1,0 +1,11 @@
+{
+  "task": "requests_6644",
+  "resolved": true,
+  "submitted": true,
+  "turns": 68,
+  "tool_calls": 63,
+  "wall_s": 753.2,
+  "iterations": 1,
+  "pkg": "v2r",
+  "winner_branch": "fixer_a"
+}

@@ -1,0 +1,81 @@
+$ unshare -m --propagation private /bin/bash -c mount --bind /tmp/work_fastapi_14964/workspace /workspace && mount --bind /tmp/work_fastapi_14964/tmp /tmp && cd /content/bench_tools && exec env DEHA_OUT=/content/run_21_bench20_v5_8_local/fastapi_14964 PYTHONUNBUFFERED=1 python3 -u task_runner.py fastapi_14964 /content/submission_swegemma_v5_8_compile_gate
+[preflight] {"ok": true, "stage": "base_tests", "reason": null, "base_exit": 1, "base_tail": ["2 failed, 7 passed in 0.84s"], "collected": 9, "declared": ["tests.test_deprecated_responses::test_orjson_response_emits_deprecation_warning", "tests.test_deprecated_responses::test_ujson_response_emits_deprecation_warning"], "failed_at_base": ["tests.test_deprecated_responses::test_orjson_response_emits_deprecation_warning", "tests.test_deprecated_responses::test_ujson_response_emits_deprecation_warning"], "missing": null, "error": null, "cmd": "python3 -s -m pytest --junitxml=/tmp/_swegemma_junit_fastapi_14964_base.xml tests/test_deprecated_responses.py tests/test_orjson_response_class.py tests/test_tutorial/test_custom_response/test_tutorial001.py tests/test_tutorial/test_custom_response/test_tutorial001b.py -p no:anyio -o timeout=0 -o python_classes='Test* *Test' -q", "preflight_s": 5.1}
+[validate] {"root": "agent.yaml", "files": 11, "models": ["gemma-4-e4b-it-qat-w4a16-ct"], "tools": {"deha_planner_and_conflict_guard": ["search_similar_code", "get_code_neighbors", "get_code_subgraph", "read_file", "edit_file", "run_command", "get_status", "submit_patch"], "deha_isolated_coder_a": ["read_file", "edit_file", "run_command", "get_status", "search_similar_code"], "deha_isolated_coder_b_and_merger": ["read_file", "edit_file", "run_command", "get_status", "search_similar_code"], "deha_qa_smoke_and_feedback": ["read_file", "run_command", "get_status", "submit_patch"]}, "include_semantics_identical": true, "adapters": []}
+[dag] fastapi_14964: submitted=True resolved=False turns=40 tool_calls=31 edit_errors=7 nudges=0 wall=398.2s verdict="exit=1 required 0/2 passed; ['7 failed, 2 passed in 1.59s']" err=None
+      flow=deha_planner_and_conflict_guard -> deha_isolated_coder_a -> deha_isolated_coder_b_and_merger -> deha_qa_smoke_and_feedback -> deha_planner_and_conflict_guard
+
+--- stderr ---
+ONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x7daa0227cd10> at 0x7da9f8a56580> was created in a different Context
+Failed to detach context
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 602, in use_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 504, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 441, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/telemetry/_instrumentation.py", line 329, in record_agent_invocation
+    yield tel_ctx
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/agents/base_agent.py", line 308, in run_async
+    yield event
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/__init__.py", line 127, in detach
+    _RUNTIME_CONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x7daa0227cd10> at 0x7daa018e7ec0> was created in a different Context
+Failed to detach context
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/telemetry/_instrumentation.py", line 329, in record_agent_invocation
+    yield tel_ctx
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/agents/base_agent.py", line 308, in run_async
+    yield event
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/__init__.py", line 127, in detach
+    _RUNTIME_CONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x7daa0227cd10> at 0x7daa018e5200> was created in a different Context
+Failed to detach context
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 602, in use_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 504, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/trace/__init__.py", line 441, in start_as_current_span
+    yield span
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/telemetry/_instrumentation.py", line 78, in record_invocation
+    yield
+  File "/usr/local/lib/python3.13/dist-packages/google/adk/runners.py", line 1354, in _run_with_trace
+    yield event
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/__init__.py", line 127, in detach
+    _RUNTIME_CONTEXT.detach(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/opentelemetry/context/contextvars_context.py", line 40, in detach
+    self._current_context.reset(token)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+ValueError: <Token var=<ContextVar name='current_context' default={} at 0x7daa0227cd10> at 0x7daa01ccf280> was created in a different Context
+
+--- rc=0 wall=410.3s timed_out=False ---

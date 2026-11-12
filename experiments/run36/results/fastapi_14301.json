@@ -1,0 +1,11 @@
+{
+  "task": "fastapi_14301",
+  "resolved": true,
+  "submitted": true,
+  "turns": 54,
+  "tool_calls": 49,
+  "wall_s": 687.7,
+  "iterations": 1,
+  "pkg": "v2r",
+  "winner_branch": "fixer_a"
+}

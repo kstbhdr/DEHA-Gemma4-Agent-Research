@@ -1,0 +1,9 @@
+{
+  "task": "requests_7205",
+  "resolved": false,
+  "submitted": false,
+  "turns": 61,
+  "tool_calls": 58,
+  "wall_s": 82.0,
+  "iterations": 1
+}

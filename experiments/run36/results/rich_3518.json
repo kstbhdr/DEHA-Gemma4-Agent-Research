@@ -1,0 +1,11 @@
+{
+  "task": "rich_3518",
+  "resolved": true,
+  "submitted": true,
+  "turns": 45,
+  "tool_calls": 40,
+  "wall_s": 370.1,
+  "iterations": 1,
+  "pkg": "v2r",
+  "winner_branch": "fixer_a"
+}

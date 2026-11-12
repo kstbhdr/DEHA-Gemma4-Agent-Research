@@ -1,0 +1,9 @@
+{
+  "task": "rich_3518",
+  "resolved": true,
+  "submitted": true,
+  "turns": 55,
+  "tool_calls": 50,
+  "wall_s": 496.9,
+  "iterations": 0
+}

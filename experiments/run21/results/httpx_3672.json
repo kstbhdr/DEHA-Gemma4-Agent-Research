@@ -1,0 +1,9 @@
+{
+  "task": "httpx_3672",
+  "resolved": false,
+  "submitted": true,
+  "turns": 23,
+  "tool_calls": 21,
+  "wall_s": 298.6,
+  "iterations": 1
+}

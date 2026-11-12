@@ -1,0 +1,8 @@
+agent_class: SequentialAgent
+name: deha_dag_iteration
+description: "One iteration: planner, isolated coder A, isolated coder B and merger, QA judge."
+sub_agents:
+  - config_path: planner.yaml
+  - config_path: coder_a.yaml
+  - config_path: coder_b.yaml
+  - config_path: qa_judge.yaml

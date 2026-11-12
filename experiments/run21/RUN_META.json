@@ -1,0 +1,52 @@
+{
+ "run": "run_21_bench20_v5_8",
+ "started": "2026-11-07 21:26:27",
+ "submission": "/content/submission_swegemma_v5_8_compile_gate",
+ "submission_sha1": "66950e2ba4c2cda0759cd1c5d0c57af8b3750225",
+ "submission_files": [
+  "agent.yaml",
+  "coder_a.yaml",
+  "coder_b.yaml",
+  "dag_iteration.yaml",
+  "eval_config.yaml",
+  "planner.yaml",
+  "prompts/coder_a.md",
+  "prompts/coder_b.md",
+  "prompts/planner.md",
+  "prompts/qa_judge.md",
+  "qa_judge.yaml"
+ ],
+ "model": "google/gemma-4-E4B-it-qat-w4a16-ct",
+ "vllm": "0.33.0 CUDA graphs + prefix caching + chunked prefill, gpu_mem_util 0.90, max_model_len 32768",
+ "eval_config": {
+  "timeout_seconds": 180,
+  "max_tool_calls": 58,
+  "max_time_minutes": 15,
+  "max_turns": 45
+ },
+ "tasks": [
+  "requests_7205",
+  "fastapi_14964",
+  "rich_3468",
+  "rich_3882",
+  "rich_3454",
+  "rich_3518",
+  "requests_6644",
+  "requests_7309",
+  "requests_7315",
+  "fastapi_14301",
+  "fastapi_14356",
+  "rich_3718",
+  "rich_3506",
+  "rich_3052",
+  "fastapi_13920",
+  "fastapi_14258",
+  "fastapi_14791",
+  "fastapi_14616",
+  "fastapi_14482",
+  "httpx_3672"
+ ],
+ "isolation": "unshare -m: private /workspace and /tmp per task (bind mounts)",
+ "env_prep": "GitHub mirror + base_commit checkout + per-commit dependency pins (real_tasks.py)",
+ "code": "logs/run_21_bench20_v5_8/code/ (see also logs/run_17_bench20_v5/RESUME.md)"
+}

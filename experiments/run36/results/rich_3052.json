@@ -1,0 +1,11 @@
+{
+  "task": "rich_3052",
+  "resolved": true,
+  "submitted": false,
+  "turns": 115,
+  "tool_calls": 109,
+  "wall_s": 1811.1,
+  "iterations": 2,
+  "pkg": "v2r",
+  "winner_branch": "auto_recovery"
+}

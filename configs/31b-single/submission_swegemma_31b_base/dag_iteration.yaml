@@ -1,0 +1,6 @@
+agent_class: SequentialAgent
+name: deha_dag_iteration
+description: 'One iteration: fixer (locate + edit + protocol check), then QA judge (tests, feedback, submit).'
+sub_agents:
+- config_path: sub_agents/fixer.yaml
+- config_path: sub_agents/qa_judge.yaml

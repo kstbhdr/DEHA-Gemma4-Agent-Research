@@ -1,0 +1,67 @@
+{
+ "run": "run_36_31b_parallel_30m",
+ "started": "2026-11-11 15:34:17",
+ "submission": "/content/work_l4_gguf/submission_swegemma_31b_parallel_v2",
+ "submission_sha1": "cc25494995feedcd4fb43fa892f4037eac143e5f",
+ "submission_files": [
+  "agent.yaml",
+  "dag_iteration.yaml",
+  "eval_config.yaml",
+  "parallel_fixers.yaml",
+  "sub_agents/fixer_a.yaml",
+  "sub_agents/fixer_b.yaml",
+  "sub_agents/qa_judge.yaml"
+ ],
+ "model": "gemma-4-31b-it-qat-w4a16-ct (local stand-in: unsloth/gemma-4-31B-it-GGUF Q3_K_M)",
+ "server": "llama.cpp f3b407c llama-server CUDA: -np 2 -c 65536 -ctk q4_0 -ctv q4_0 -fa on --jinja --reasoning-format deepseek, MTP draft (bartowski mtp-google_gemma-4-31B-it-Q4_0.gguf, --spec-type draft-mtp --spec-draft-n-max 8)",
+ "gpu": "NVIDIA L4 24GB",
+ "workers": 1,
+ "lora": null,
+ "thinking_budget": {
+  "fixer_a": 6144,
+  "fixer_b": 6144,
+  "qa_judge": 3072
+ },
+ "structure": "LoopAgent(3) -> SequentialAgent[ParallelAgent(fixer_a, fixer_b), qa_judge]",
+ "max_output_tokens": {
+  "fixer_a": 16384,
+  "fixer_b": 16384,
+  "qa_judge": 16384
+ },
+ "planner_tools_removed": [
+  "edit_file",
+  "submit_patch"
+ ],
+ "context_guard": "App EventsCompactionConfig(compaction_interval=15, overlap_size=2, token_threshold=14336, event_retention_size=5) + before_model_callback pruning older tool outputs past 14336 tokens",
+ "eval_config": {
+  "timeout_seconds": 300,
+  "max_tool_calls": 110,
+  "max_time_minutes": 30,
+  "max_turns": 200
+ },
+ "tasks": [
+  "rich_3454",
+  "requests_7309",
+  "rich_3506",
+  "fastapi_14616",
+  "fastapi_14964",
+  "requests_7315",
+  "rich_3468",
+  "fastapi_14258",
+  "rich_3718",
+  "rich_3052",
+  "fastapi_14482",
+  "fastapi_13920",
+  "fastapi_14791",
+  "requests_7205",
+  "requests_6644",
+  "fastapi_14301",
+  "rich_3518",
+  "rich_3882",
+  "fastapi_14356",
+  "httpx_3672"
+ ],
+ "isolation": "unshare -m: private /workspace and /tmp per task (bind mounts of /tmp/work_highthink_<task_id>)",
+ "env_prep": "GitHub mirror + base_commit checkout + per-commit dependency pins (real_tasks.py)",
+ "code": "logs/run_36_31b_parallel_30m/code/"
+}

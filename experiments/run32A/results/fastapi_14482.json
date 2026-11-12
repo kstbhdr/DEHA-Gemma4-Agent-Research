@@ -1,0 +1,9 @@
+{
+  "task": "fastapi_14482",
+  "resolved": false,
+  "submitted": false,
+  "turns": 61,
+  "tool_calls": 58,
+  "wall_s": 192.5,
+  "iterations": 0
+}

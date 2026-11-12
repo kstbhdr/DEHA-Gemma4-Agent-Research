@@ -1,0 +1,68 @@
+{
+ "run": "run_35_l4_31b_gguf",
+ "started": "2026-11-11 08:01:39",
+ "submission": "/content/work_l4_gguf/submission_swegemma_31b_single",
+ "submission_sha1": "59ef6cc2d012ed7214dc41bd0da8fe4b9e000587",
+ "submission_files": [
+  "agent.yaml",
+  "dag_iteration.yaml",
+  "eval_config.yaml",
+  "sub_agents/coder_a.yaml",
+  "sub_agents/coder_b.yaml",
+  "sub_agents/planner.yaml",
+  "sub_agents/qa_judge.yaml"
+ ],
+ "model": "gemma-4-31b-it-qat-w4a16-ct (local stand-in: unsloth/gemma-4-31B-it-GGUF Q3_K_M)",
+ "server": "llama.cpp f3b407c llama-server CUDA: -np 1 -c 32768 -ctk q4_0 -ctv q4_0 -fa on --jinja --reasoning-format deepseek, MTP draft (bartowski mtp-google_gemma-4-31B-it-Q4_0.gguf, --spec-type draft-mtp --spec-draft-n-max 8)",
+ "gpu": "NVIDIA L4 24GB",
+ "workers": 1,
+ "lora": null,
+ "thinking_budget": {
+  "planner": 8192,
+  "coder_a": 12288,
+  "coder_b": 12288,
+  "qa_judge": 6144
+ },
+ "max_output_tokens": {
+  "planner": 16384,
+  "coder_a": 16384,
+  "coder_b": 16384,
+  "qa_judge": 16384
+ },
+ "planner_tools_removed": [
+  "edit_file",
+  "submit_patch"
+ ],
+ "context_guard": "App EventsCompactionConfig(compaction_interval=15, overlap_size=2, token_threshold=14336, event_retention_size=5) + before_model_callback pruning older tool outputs past 14336 tokens",
+ "eval_config": {
+  "timeout_seconds": 180,
+  "max_tool_calls": 58,
+  "max_time_minutes": 15,
+  "max_turns": 72
+ },
+ "tasks": [
+  "fastapi_14616",
+  "rich_3506",
+  "httpx_3672",
+  "fastapi_14964",
+  "requests_7205",
+  "rich_3454",
+  "requests_6644",
+  "requests_7309",
+  "requests_7315",
+  "fastapi_14301",
+  "rich_3518",
+  "rich_3468",
+  "rich_3718",
+  "rich_3882",
+  "rich_3052",
+  "fastapi_14356",
+  "fastapi_14791",
+  "fastapi_14482",
+  "fastapi_13920",
+  "fastapi_14258"
+ ],
+ "isolation": "unshare -m: private /workspace and /tmp per task (bind mounts of /tmp/work_highthink_<task_id>)",
+ "env_prep": "GitHub mirror + base_commit checkout + per-commit dependency pins (real_tasks.py)",
+ "code": "logs/run_35_l4_31b_gguf/code/"
+}

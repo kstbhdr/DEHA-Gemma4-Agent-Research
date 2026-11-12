@@ -1,0 +1,7 @@
+run,metric,resolved,tasks
+run21,single_run,6,20
+run32A,single_run,0,20
+run32B,single_run,0,20
+run35,single_run,10,20
+run36,single_run,13,20
+run35+run36,oracle_union,14,20
