@@ -26,7 +26,7 @@ The 31B rows used a local NVIDIA L4 with GGUF Q3_K_M and MTP. Official W4A16 use
 
 ## Evidence
 
-- [Paper Track manuscript](paper/DEHA_Gemma4_Paper_Track_Submission.md) and [release notes for reading the manuscript](paper/README.md)
+- [**Current v3 Paper Track manuscript**](paper/DEHA_Gemma4_Paper_Track_v3_Ready.md), [archived initial draft](paper/DEHA_Gemma4_Paper_Track_Submission.md), and [manuscript version notes](paper/README.md)
 - [E4B DAG YAML and prompts](configs/e4b-dag/), [31B single-fixer YAML](configs/31b-single/), and [31B parallel YAML](configs/31b-parallel/)
 - [Cross-run report](research/CROSS_RUN_REPORT.md), [base high-think report](research/BASE_HIGHTHINK_REPORT.md), [v6 training and evaluation report](research/V6_FINAL_TRAINING_EVAL_REPORT.md), and [31B parallel validation report](research/VALIDATION_31B_PARALLEL_REPORT.md)
 - [Result table](experiments/results.csv), [source manifest](research/PROVENANCE.tsv), [release checksums](SHA256SUMS), and [verification and rerun instructions](research/REPRODUCTION.md)
